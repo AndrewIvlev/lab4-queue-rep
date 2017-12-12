@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="windows-1251"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="9,00"
+	Version="9.00"
 	Name="lab4-queue"
 	ProjectGUID="{6DA8D666-A279-4A28-A63F-3DAFAE25350D}"
 	RootNamespace="lab4queue"
