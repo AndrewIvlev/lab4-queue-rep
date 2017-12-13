@@ -240,6 +240,10 @@
 				</File>
 			</File>
 			<File
+				RelativePath=".\GraphQue.h"
+				>
+			</File>
+			<File
 				RelativePath=".\resource.h"
 				>
 			</File>

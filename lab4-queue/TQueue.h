@@ -7,7 +7,7 @@ class TQueue{
 	T* mas;
 public:
 	TQueue(int s = 10);
-	~TQueue(){	delete[] mas;	}
+	~TQueue(){ delete[] mas; }
 	bool isempty(){return ( Size == 0 ); }
 	bool isfull(){ return ( Size == MaxSize ); }
 	TQueue(const TQueue &TQ);
@@ -33,13 +33,12 @@ TQueue<T>::TQueue(int s = 10)
 template <class T>
 TQueue<T>::TQueue(const TQueue &TQ)
 {
-	f = first = TQ.first;
+	first = TQ.first;
 	last = TQ.last;
 	MaxSize = TQ.MaxSize;
 	mas = new T[Size = TQ.Size];
-	for ( int i = 0; i < Size; i++ ) {
-		mas[i + f] = TQ.mas[i + f];
-		if ( i + f == MaxSize - 1 ) f = -i;
+	for ( int i = 0; i < MaxSize; i++ ) {
+		mas[i] = TQ.mas[i];
 	}
 }
 
@@ -51,7 +50,7 @@ TQueue<T>& TQueue<T>::operator=(const TQueue &TQ)
 	last = TQ.last;
 	MaxSize = TQ.MaxSize;
 	mas = new T[Size = TQ.Size];
-	for ( int i=0; i < Size; i++ )
+	for ( int i=0; i < MaxSize; i++ )
 		mas[i] = TQ.mas[i];
 }
 
