@@ -11,17 +11,18 @@ public:
 	bool isempty(){return ( Size == 0 ); }
 	bool isfull(){ return ( Size == MaxSize ); }
 	TQueue(const TQueue &TQ);
-	TQueue& operator=(const TQueue &TQ);
+	TQueue<T>& operator=(const TQueue<T> &TQ);
 	T pop();
 	void push(const T& el);
 	T top();
 	T First();
 	T Last();
 	T GetSize();
+	T GetMaxSize();
 };
 
 template <class T>
-TQueue<T>::TQueue(int s = 10)
+TQueue<T>::TQueue(int s)
 {
 	mas = new T[s];
 	first = 0;
@@ -43,7 +44,7 @@ TQueue<T>::TQueue(const TQueue &TQ)
 }
 
 template <class T>
-TQueue<T>& TQueue<T>::operator=(const TQueue &TQ)
+TQueue<T>& TQueue<T>::operator=(const TQueue<T> &TQ)
 {
 	delete[] mas;
 	first = TQ.first;
@@ -52,6 +53,7 @@ TQueue<T>& TQueue<T>::operator=(const TQueue &TQ)
 	mas = new T[Size = TQ.Size];
 	for ( int i=0; i < MaxSize; i++ )
 		mas[i] = TQ.mas[i];
+	return *this;
 }
 
 template <class T>
@@ -83,15 +85,20 @@ T TQueue<T>::top(){
 
 template <class T>
 T TQueue<T>::First(){
-	return mas[first];
+	return first;
 }
 
 template <class T>
 T TQueue<T>::Last(){
-	return mas[last];
+	return last;
 }
 
 template <class T>
 T TQueue<T>::GetSize(){
 	return Size;
+}
+
+template <class T>
+T TQueue<T>::GetMaxSize(){
+	return MaxSize;
 }
