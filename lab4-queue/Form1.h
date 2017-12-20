@@ -25,6 +25,7 @@ namespace lab4queue {
 	{
 		TQueue<int> *pQueue;
 		Graphics^ gr;
+		int counter;
 		float su; //стартовый угол
 		float ku; //конечный угол
 		int PofExt; // вероятность извелчения в очередь
@@ -46,7 +47,7 @@ namespace lab4queue {
 			//TODO: добавьте код конструктора
 			//
 			gr = this->CreateGraphics();
-			timer->Interval = 333;
+			timer->Interval = 4000;
 			timer->Tick += gcnew System::EventHandler(this, &Form1::timer_Tick);
 		//	this->timer->Tick += gcnew System::EventHandler(this, &Form1::start_button_Click);
 		}
@@ -328,15 +329,21 @@ namespace lab4queue {
 
 				this->stop_button->Enabled = true;
 				this->start_button->Enabled = false;
+				counter = 0;
 				timer->Start();
 			}
 	private: System::Void stop_button_Click(System::Object^  sender, System::EventArgs^  e) {
 				timer->Stop();
-				ext_collision->Text = L"0 times tried to extract from the empty queue";
-				Add_colision->Text = L"0 times tried to add to the full queue";
-				number_of_retrieved->Text = L"0 items removed";
-				number_of_added->Text = L"Added 0 items";
+
 				this->start_button->Enabled = true;
+				if ( counter == 1 ) {
+					gr->FillPie(Brushes::LightSteelBlue, 300.f, 50.f, 350.f, 200.f, 0.f, 360.f);
+					ext_collision->Text = L"0 times tried to extract from the empty queue";
+					Add_colision->Text = L"0 times tried to add to the full queue";
+					number_of_retrieved->Text = L"0 items removed";
+					number_of_added->Text = L"Added 0 items";
+				}
+				counter++;
 			}
 	private: System::Void timer_Tick(System::Object^  sender, System::EventArgs^  e) {
 				int rint = rand() % 100 + 1;
@@ -356,6 +363,7 @@ namespace lab4queue {
 						pQueue->pop();
 						gr->FillPie(Brushes::LightSteelBlue, 320.f, 30.f, 230.f, 230.f, su, ku);
 						su = ((float)( 360 * pQueue->First() )) / pQueue->GetMaxSize();
+						ku = ((float)( 360 * pQueue->GetSize() )) / pQueue->GetMaxSize();
 						gr->FillPie(Brushes::Red, 320.f, 30.f, 230.f, 230.f, su, ku);
 						gr->FillPie(Brushes::LightSteelBlue, 350.f, 61.f, 170.f, 170.f, su, ku);
 					} else { ext_collision->Text = Convert::ToString(++colempque) + L" times tried to extract from the empty queue"; }
