@@ -24,6 +24,7 @@ public:
 template <class T>
 TQueue<T>::TQueue(int s)
 {
+	if ( s < 0) throw -1;
 	mas = new T[s];
 	first = 0;
 	last = -1;
@@ -31,7 +32,7 @@ TQueue<T>::TQueue(int s)
 	Size = 0;
 }
 
-template <class T>
+/*template <class T>
 TQueue<T>::TQueue(const TQueue &TQ)
 {
 	first = TQ.first;
@@ -41,7 +42,7 @@ TQueue<T>::TQueue(const TQueue &TQ)
 	for ( int i = 0; i < MaxSize; i++ ) {
 		mas[i] = TQ.mas[i];
 	}
-}
+}*/
 
 template <class T>
 TQueue<T>& TQueue<T>::operator=(const TQueue<T> &TQ)

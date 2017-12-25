@@ -47,7 +47,7 @@ namespace lab4queue {
 			//TODO: добавьте код конструктора
 			//
 			gr = this->CreateGraphics();
-			timer->Interval = 4000;
+			timer->Interval = 100;
 			timer->Tick += gcnew System::EventHandler(this, &Form1::timer_Tick);
 		//	this->timer->Tick += gcnew System::EventHandler(this, &Form1::start_button_Click);
 		}
